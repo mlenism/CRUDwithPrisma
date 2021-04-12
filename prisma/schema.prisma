@@ -1,0 +1,32 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model cliente {
+  id_cliente       String @id @db.VarChar(10)
+  identificacion   String @db.VarChar(10)
+  nombre           String @db.VarChar(30)
+  apellido         String @db.VarChar(30)
+  sexo             String @db.Char(1)
+  telefono         String @db.VarChar(10)
+  fecha_nacimiento String @db.VarChar(10)
+}
+
+model productos {
+  id              String @id @db.VarChar(10)
+  nombre          String @db.VarChar(10)
+  descripcion     String @db.VarChar(30)
+  precio_unitario Int
+}
+
+model ventas {
+  idventa     String @id @db.VarChar(10)
+  id_cliente  String @db.VarChar(10)
+  id_producto String @db.VarChar(30)
+  total       Int
+}
